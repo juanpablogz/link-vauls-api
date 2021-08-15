@@ -11,7 +11,7 @@ jobs:
     env:
       DB_USER: postgres
       DB_PASS: postgres
-      DB_NAME: global
+      DB_NAME: link_vauls
       REDIS_URL: redis://127.0.0.1:6379/1
 
     steps:

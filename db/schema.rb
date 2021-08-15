@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_171441) do
+ActiveRecord::Schema.define(version: 2021_08_08_214919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -94,12 +94,28 @@ ActiveRecord::Schema.define(version: 2020_07_16_171441) do
     t.index ["error_group_id"], name: "index_exception_hunter_errors_on_error_group_id"
   end
 
+  create_table "links", force: :cascade do |t|
+    t.string "lookup_code"
+    t.string "original_url"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string "key", null: false
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["key"], name: "index_settings_on_key", unique: true
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "test"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -121,10 +137,12 @@ ActiveRecord::Schema.define(version: 2020_07_16_171441) do
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.json "tokens"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
+  add_foreign_key "links", "users"
 end

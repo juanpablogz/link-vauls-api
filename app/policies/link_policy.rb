@@ -1,0 +1,2 @@
+class LinkPolicy < MasterPolicy
+end

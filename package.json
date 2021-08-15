@@ -1,5 +1,5 @@
 {
-  "name": "rails_api_base",
+  "name": "link_vauls",
   "private": true,
   "dependencies": {
     "@activeadmin/activeadmin": "^2.7.0",
