@@ -36,7 +36,7 @@ module Api
       end
 
       def error_message(entity)
-        entity.erros.messages.values
+        entity.errors.messages.values
       end
 
       def permission?(entity)

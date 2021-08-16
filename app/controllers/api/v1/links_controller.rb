@@ -1,6 +1,7 @@
 module Api
   module V1
     class LinksController < Api::V1::ApiController  
+      before_action :set_link, only: %i[show update destroy]
       before_action do
         permission?(Link)
       end
@@ -29,7 +30,9 @@ module Api
       def link_params
         params.require(:link).permit(:original_url, :title).merge(user_id: current_user.id)
       end
-    
+      def set_link
+        @link = Link.find(params[:id])
+      end
     end
   end
 end
