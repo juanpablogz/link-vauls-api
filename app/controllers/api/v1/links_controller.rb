@@ -1,3 +1,4 @@
+require 'byebug'
 module Api
   module V1
     class LinksController < Api::V1::ApiController  
@@ -14,9 +15,12 @@ module Api
         shortener = Shortener.new(link_params[:original_url])
         @link = shortener.generate_short_link
         @link.user_id = current_user.id
-        @link.title = link_params[:title]
-        @link.save
-        render json: @link
+        @link.title = link_params[:title]        
+        if @link.save
+          render json: @link
+        else 
+          render json: error_message(@link)
+        end
       end
     
       private 
