@@ -1,4 +1,3 @@
-require 'byebug'
 module Api
   module V1
     class LinksController < Api::V1::ApiController
@@ -20,7 +19,7 @@ module Api
       end
 
       def index
-        link = Link.all
+        link = Link.where(user_id: current_user.id)
         render json: link
       end
 
@@ -39,9 +38,9 @@ module Api
 
       def destroy
         @link.destroy
-       if @link.destroy
-        render json: { message: "removed" }, status: :ok
-       end
+        if @link.destroy
+          render json: { message: "removed" }, status: :ok
+        end
       end
 
       private
