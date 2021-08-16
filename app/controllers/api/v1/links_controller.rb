@@ -1,7 +1,6 @@
 module Api
   module V1
     class LinksController < Api::V1::ApiController  
-      before_action :set_link, only: %i[show update destroy]
       before_action do
         permission?(Link)
       end

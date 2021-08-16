@@ -1,2 +1,2 @@
-class LinkPolicy < MasterPolicy
+class LinkPolicy < CorePolicy
 end
