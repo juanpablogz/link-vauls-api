@@ -1,5 +1,4 @@
 require 'digest/sha2'
-require 'byebug'
 class Shortener
 
   attr_reader :url, :link_model

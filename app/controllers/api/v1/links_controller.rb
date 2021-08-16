@@ -1,4 +1,3 @@
-require 'byebug'
 module Api
   module V1
     class LinksController < Api::V1::ApiController  
