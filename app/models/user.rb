@@ -40,7 +40,9 @@ class User < ApplicationRecord
   validates :uid, uniqueness: { scope: :provider }
 
   before_validation :init_uid
+  has_many :links, dependent: :destroy
 
+  enum role: { role_undefined: 0, admin: 1, user_platform: 2 }
   def full_name
     return username if first_name.blank?
 

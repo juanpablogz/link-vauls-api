@@ -2,6 +2,9 @@ require 'byebug'
 module Api
   module V1
     class LinksController < Api::V1::ApiController  
+      before_action do
+        permission?(Link)
+      end
       def index
         link = Link.where(user_id: current_user.id)
         render json: link
