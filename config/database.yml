@@ -10,7 +10,9 @@ default: &default
 
 development:
     <<: *default
-    database: <%= ENV['DB_NAME'] %>_development
+    database: dbftk1brcu5ttd
+    username: kazdushjzwrtjy
+    password: 9bf391a57249486011bb45cae75656aecf2831044c11ebb036cddd7315d9b932
     timeout: 5000
 test:
     <<: *default
